@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="script.js"></script>
+    <title>Odin Library</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -17,9 +17,31 @@
                 <li>FAQ</li>
             </ul>
         </div>
-
         <div class="library">
-            <button class="add-book" type="button"> + </button>
+            <button id="open-modal" class="open-modal">+</button>
+            <div class="modal" id="modal">
+                <form id ='form' action="action_page.php" style="border: 1px solid">
+                        <h1>Add to Readlist</h1>
+                        <p>Reading Logbook fill out form </p>
+                
+                        <label for="book-title">Book Title</label>
+                        <input type="text" name="book-title" id="book-title" required placeholder="Harry Potter and the Philosopher's Stone">
+
+                        <label for="author">Author</label>
+                        <input type="text" name="author" id="author" placeholder="J.K Rowling" required>
+
+                        <label for="pages-read">Pages Read</label>
+                        <input type="number" name="pages-read" id="pages-read" placeholder="0" required>
+
+                        <label for="total-pages">Total Pages</label>
+                        <input type="number" name="total-pages" id="total-pages" placeholder="250" required>
+
+                        <div class="clearfix">
+                            <button type="button" id="cancelbtn" class="cancelbtn">Cancel</button>
+                            <button type="submit" class="submitbtn">Add to Library</button>
+                        </div>
+                </form>
+             </div>
         </div>
         <div class="footer">footer</div>
     </div>
