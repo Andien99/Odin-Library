@@ -16,22 +16,35 @@ cancelBtn.addEventListener( 'click', () => {
 
 const myLibrary = []
 
-const form = document.getElementById('form')
+let NewBook = '';
 
-form.addEventListener( 'submit', function(event) {
+const submitBtn = document.querySelector('#submitbtn')
+
+submitBtn.addEventListener( 'click', function(event) {
+
+    
+    NewBook = new Book(
+    document.getElementById('title').value,
+    document.getElementById('author').value,
+    document.getElementById('pages-read').value,
+    document.getElementById('status').value,
+    crypto.randomUUID()
+    )
+
+    addBookToLibrary()
+    
     event.preventDefault();
-    console.log(event)
-    addBookToLibrary();
 })
 
 
-function Book() {
-    title = this.title,
-    author = this.author,
-    pagesRead = this.pagesRead,
-    totalPages = this.totalPages
+function Book(title, author, pagesRead, status, UUID) {
+    this.title = title,
+    this.author = author,
+    this.pagesRead = pagesRead,
+    this.status = status
+    this.UUID = UUID
 }
 
 function addBookToLibrary () {
-    const formData = new FormData(form);
+    myLibrary.push(NewBook)
 }

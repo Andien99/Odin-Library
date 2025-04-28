@@ -24,8 +24,8 @@
                         <h1>Add to Readlist</h1>
                         <p>Reading Logbook fill out form </p>
                 
-                        <label for="book-title">Book Title</label>
-                        <input type="text" name="book-title" id="book-title" required placeholder="Harry Potter and the Philosopher's Stone">
+                        <label for="title">Book Title</label>
+                        <input type="text" name="title" id="title" required placeholder="Harry Potter and the Philosopher's Stone">
 
                         <label for="author">Author</label>
                         <input type="text" name="author" id="author" placeholder="J.K Rowling" required>
@@ -33,12 +33,15 @@
                         <label for="pages-read">Pages Read</label>
                         <input type="number" name="pages-read" id="pages-read" placeholder="0" required>
 
-                        <label for="total-pages">Total Pages</label>
-                        <input type="number" name="total-pages" id="total-pages" placeholder="250" required>
+                        <select name="status" id="status">
+                            <option value="In Progress">In Progress</option>
+                            <option value="Not Read">Not Read</option>
+                            <option value="Completed">Completed</option>
+                        </select>
 
                         <div class="clearfix">
                             <button type="button" id="cancelbtn" class="cancelbtn">Cancel</button>
-                            <button type="submit" class="submitbtn">Add to Library</button>
+                            <button type="submit" id ='submitbtn' class="submitbtn">Add to Library</button>
                         </div>
                 </form>
              </div>
