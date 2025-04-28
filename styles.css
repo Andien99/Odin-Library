@@ -44,6 +44,12 @@
 .library {
     background-color: #faf4e4;
     padding: 24px;
+
+    display:grid;
+    overflow: auto;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, 170px);
+    grid-auto-rows: auto;
 }
 
 .open-modal {
@@ -52,6 +58,7 @@
     font-size: 60px;
     background-color: whitesmoke;
     border: 1px solid rgb(165, 165, 165);
+    border-radius: 6px;
 }
 
 .modal {
@@ -100,5 +107,17 @@ form > input {
 }
 
 .footer {
-    background-color: #fad85c;
+  background-color: #fad85c;
+}
+
+.new {
+  height: 200px;
+  width: 150px;
+  font-size: 1.5rem;
+  background-color: rgb(68, 206, 219);
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  padding: 2px;
 }
