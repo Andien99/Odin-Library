@@ -18,65 +18,77 @@ cancelBtn.addEventListener( 'click', () => {
 
 const myLibrary = []
 
-let NewBook = '';
+let newBook = '';
 
 
 
 submitBtn.addEventListener( 'click', function(event) {
     event.preventDefault()
     // Gets parameters for a book based on user input on forms and adds to the mylibrary array
-    NewBook = new Book(
+    newBook = new Book(
     document.getElementById('title').value,
     document.getElementById('author').value,
     document.getElementById('pages-read').value,
-    document.getElementById('status').value,
+    document.getElementById('progress').value,
     crypto.randomUUID()
     )
     addBookToLibrary()
     // resets form to default
-    form.reset()
-    modal.classList.remove('open')
+    // form.reset()
+    // modal.classList.remove('open')
 })
 
 
-function Book(title, author, pagesRead, status, UUID) {
+function Book(title, author, pagesRead, progress, UUID) {
     this.title = title,
     this.author = author,
     this.pagesRead = pagesRead,
-    this.status = status
+    this.progress= progress
     this.UUID = UUID
 }
 
 function addBookToLibrary () {
-    myLibrary.push(NewBook);
-    displayBook()
-}
+    if (myLibrary[0] == undefined)  {
+        displayBook()
+        return myLibrary.push(newBook);
+    } 
+    for (let i = 0; i < myLibrary.length; i++) {
+         // will throw an error if 'newBook' shares the same title and author of an item in an array
+            if (myLibrary[i].title == newBook.title && myLibrary[i].author == newBook.author) {
+                return alert('Your book\'s title shares a \'Title\' and \'Author\' with another book currently on your Reading List')
+            }
+        } 
+    displayBook();
+    myLibrary.push(newBook);
+    }
 
 // function that loops through array and displays each book
 
 function displayBook () {
-    for (let i = 0; i < myLibrary.length; i++) {
-        if 
-        // appends the new book to the main page
-        const newBook = document.createElement('div')
-        newBook.classList.add('new')
 
-        const title = document.createElement('p')
-        title.textContent =  'Title: ' +  document.getElementById('title').value
-        newBook.appendChild(title)
+    // appends the new book to the main page
+    const newBookCard = document.createElement('div')
+    newBookCard.classList.add('new')
 
-        const author = document.createElement('p');
-        author.textContent = 'Author:' +  document.getElementById('author').value
-        newBook.appendChild(author)
+    const title = document.createElement('p')
+    title.textContent = document.getElementById('title').value
+    newBookCard.appendChild(title)
 
-        const pagesRead = document.createElement('p')
-        pagesRead.textContent = 'Pages read: ' + document.getElementById('pages-read').value
-        newBook.appendChild(pagesRead)
+    const author = document.createElement('p');
+    author.textContent = 'By' +  document.getElementById('author').value
+    newBookCard.appendChild(author)
 
-        const condition = document.createElement('p')
-        condition.textContent =  'status: ' + document.getElementById('status').value;
-        newBook.appendChild(condition)
-
-        library.appendChild(newBook)
+    const progress = document.createElement('p')
+    progress.textContent = document.getElementById('progress').value;
+    progress.classList.add('progress')
+    newBookCard.appendChild(progress)
+        
+    if (newBook.progress == 'Started') {
+        newBookCard.classList.add('started')
+    }   else if (newBook.progress == 'Not Read') {
+        newBookCard.classList.add('not-read')
+    } else {
+        newBookCard.classList.add('completed')
     }
+    library.appendChild(newBookCard)
 }
