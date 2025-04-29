@@ -67,7 +67,7 @@ function addBookToLibrary () {
 
 function displayBook () {
 
-    // appends the new book to the main page
+    // appends the new book to the main page with params
     const newBookCard = document.createElement('div')
     newBookCard.classList.add('new')
     newBookCard.setAttribute('id', newBook.UUID)
@@ -80,19 +80,6 @@ function displayBook () {
     author.textContent = 'By' +  document.getElementById('author').value
     newBookCard.appendChild(author)
 
-    const progress = document.createElement('p')
-    progress.textContent = document.getElementById('progress').value;
-    progress.classList.add('progress')
-    newBookCard.appendChild(progress)
-        
-    if (newBook.progress == 'Started') {
-        newBookCard.classList.add('started')
-    }   else if (newBook.progress == 'Not Read') {
-        newBookCard.classList.add('not-read')
-    } else {
-        newBookCard.classList.add('completed')
-    }
-
     const removeBtn = document.createElement('button')
     removeBtn.classList.add('remove-button')
     removeBtn.setAttribute('id', newBook.UUID)
@@ -101,12 +88,36 @@ function displayBook () {
     library.appendChild(newBookCard)
 
     removeBtn.addEventListener('click', function() {
+        if (myLibrary.length == 0) {
+            newBookCard.remove()
+        }
         for (let i = 0; i < myLibrary.length; i++) {
+            newBookCard.remove()
             if (removeBtn.id == myLibrary[i].UUID) {
                 console.log('match at ' + i)
+                myLibrary.splice(i, i+1)
             }
         }
 
     })
+
+    const progress = document.createElement('select')
+    progress.innerText = progress.textContent = newBook.progress
+    newBookCard.appendChild(progress)
+    const started = document.createElement('option')
+    started.textContent = 'Started'
+    progress.appendChild(started)
+    const notRead = document.createElement('option')
+    notRead.textContent = 'Not Read'
+    progress.appendChild(notRead)
+    const completed = document.createElement('option')
+    completed.textContent = 'Completed'
+    progress.appendChild(completed)
+
+    progress.addEventListener('change', function () {
+        console.log(progress.value)
+        newBookCard.className = (progress.value).replace(' ','')
+    })
 }
+
 
