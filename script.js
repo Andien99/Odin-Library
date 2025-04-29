@@ -7,11 +7,12 @@ const submitBtn = document.querySelector('#submitbtn')
 const form = document.querySelector('#form')
 openModal.addEventListener ('click', () => { 
     console.log('works')
-    modal.classList.add('open')
+    modal.setAttribute('id','open')
 })
 
 cancelBtn.addEventListener( 'click', () => {
     modal.classList.remove('open')
+    modal.setAttribute('id', '')
 }) 
 
 // Code to store the books
@@ -69,6 +70,7 @@ function displayBook () {
     // appends the new book to the main page
     const newBookCard = document.createElement('div')
     newBookCard.classList.add('new')
+    newBookCard.setAttribute('id', newBook.UUID)
 
     const title = document.createElement('p')
     title.textContent = document.getElementById('title').value
@@ -90,5 +92,21 @@ function displayBook () {
     } else {
         newBookCard.classList.add('completed')
     }
+
+    const removeBtn = document.createElement('button')
+    removeBtn.classList.add('remove-button')
+    removeBtn.setAttribute('id', newBook.UUID)
+    removeBtn.innerText = removeBtn.textContent = 'Remove'
+    newBookCard.appendChild(removeBtn)
     library.appendChild(newBookCard)
+
+    removeBtn.addEventListener('click', function() {
+        for (let i = 0; i < myLibrary.length; i++) {
+            if (removeBtn.id == myLibrary[i].UUID) {
+                console.log('match at ' + i)
+            }
+        }
+
+    })
 }
+

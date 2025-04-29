@@ -63,9 +63,9 @@
 
 .modal {
   /* modal pop-up settings */
-  opacity: 0;
+  opacity: 0.1;
   position: fixed;
-  top: 25%;
+  top: 1000px;
   left: 42%;
   border-radius: 48px;
   /* styling */
@@ -102,8 +102,10 @@ form > input {
   align-self: center;
   justify-self: center;
 }
-.modal.open {
+.modal#open {
   opacity: 1;
+  top: 25%;
+  left: 42%;
 }
 
 .footer {
@@ -146,4 +148,12 @@ form > input {
 
 [class*='completed'] {
   background-color: rgb(150, 209, 102);
+}
+
+.remove-button {
+  border-radius: 6px;
+  font-size: 1rem;
+  border: solid 1px;
+  padding: 3px;
+  margin-top: 1.5rem;
 }
