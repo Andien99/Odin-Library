@@ -25,6 +25,8 @@
     display: grid;
     grid-template-rows: 1fr 30px;
     padding-top: 20px;
+    position: relative;
+    box-shadow: 1px 1px 1px 1px #ede8dc;
 }
 
 .title {
@@ -41,15 +43,25 @@
     padding-right: 2em;
 }
 
+.book-container {
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  background-color: #faf4e4;
+}
+
+.book-container > h3 {
+  align-self: center;
+  padding-left: 1.6rem;
+  font-size: 2rem;
+}
+
 .library {
     background-color: #faf4e4;
-    padding: 24px;
-
+    padding: 0px 24px;
     display:grid;
     overflow: auto;
     gap: 16px;
     grid-template-columns: repeat(auto-fit, 170px);
-    grid-auto-rows: auto;
 }
 
 .open-modal {
@@ -57,8 +69,14 @@
     width: 150px;
     font-size: 60px;
     background-color: whitesmoke;
-    border: 1px solid rgb(165, 165, 165);
+    position: relative;
+    border: solid 1px #ede8dc;
+    box-shadow: #ede8dc 2px 2px 2px 2px;
     border-radius: 6px;
+}
+
+.open-modal:hover {
+  background-color: rgb(240, 240, 240);
 }
 
 .modal {
@@ -110,6 +128,10 @@ form > input {
 
 .footer {
   background-color: #fad85c;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .new {
@@ -152,8 +174,69 @@ div > select > [value*='not-read'] {
 
 .remove-button {
   border-radius: 6px;
-  font-size: 1rem;
-  border: solid 1px;
+  font-size: 0.8rem;
+  border: solid 1px white;
   padding: 3px;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+select {
+  border: white 1px;
+}
+
+.Started {
+  font-family: 'Roboto', sans-serif;
+  height: 200px;
+  width: 150px;
+  font-size: 1rem;
+  background-color: #E9C46A;
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  position: relative;
+  border: solid 1px #ede8dc;
+  box-shadow: #ede8dc 2px 2px 2px 2px;
+}
+
+.NotRead {
+  font-family: 'Roboto', sans-serif;
+  height: 200px;
+  width: 150px;
+  font-size: 1rem;
+  background-color: #E76F51;
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 6px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  position: relative;
+  border: solid 1px #ede8dc;
+  box-shadow: #ede8dc 2px 2px 2px 2px;
+}
+
+.Completed {
+  font-family: 'Roboto', sans-serif;
+  height: 200px;
+  width: 150px;
+  font-size: 1rem;
+  background-color: #2A9D8F;
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 6px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  position: relative;
+  border: solid 1px #ede8dc;
+  box-shadow: #ede8dc 2px 2px 2px 2px;
 }

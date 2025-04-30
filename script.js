@@ -6,7 +6,6 @@ const cancelBtn = document.querySelector('#cancelbtn')
 const submitBtn = document.querySelector('#submitbtn')
 const form = document.querySelector('#form')
 openModal.addEventListener ('click', () => { 
-    console.log('works')
     modal.setAttribute('id','open')
 })
 
@@ -25,12 +24,15 @@ let newBook = '';
 
 submitBtn.addEventListener( 'click', function(event) {
     event.preventDefault()
+
+    if(document.getElementById('title').value=='' || document.getElementById('author').value=='') {
+        return alert('Title and Author are empty')
+    }
     // Gets parameters for a book based on user input on forms and adds to the mylibrary array
     newBook = new Book(
     document.getElementById('title').value,
     document.getElementById('author').value,
     document.getElementById('pages-read').value,
-    document.getElementById('progress').value,
     crypto.randomUUID()
     )
     addBookToLibrary()
@@ -40,11 +42,10 @@ submitBtn.addEventListener( 'click', function(event) {
 })
 
 
-function Book(title, author, pagesRead, progress, UUID) {
+function Book(title, author, pagesRead, UUID) {
     this.title = title,
     this.author = author,
     this.pagesRead = pagesRead,
-    this.progress= progress
     this.UUID = UUID
 }
 
@@ -69,7 +70,7 @@ function displayBook () {
 
     // appends the new book to the main page with params
     const newBookCard = document.createElement('div')
-    newBookCard.classList.add('new')
+    newBookCard.classList.add('Started')
     newBookCard.setAttribute('id', newBook.UUID)
 
     const title = document.createElement('p')
@@ -80,6 +81,10 @@ function displayBook () {
     author.textContent = 'By' +  document.getElementById('author').value
     newBookCard.appendChild(author)
 
+    const pages = document.createElement('p');
+    pages.textContent = 'Pages read: ' + newBook.pagesRead
+    newBookCard.append(pages)
+    
     const removeBtn = document.createElement('button')
     removeBtn.classList.add('remove-button')
     removeBtn.setAttribute('id', newBook.UUID)
@@ -98,11 +103,10 @@ function displayBook () {
                 myLibrary.splice(i, i+1)
             }
         }
-
     })
 
     const progress = document.createElement('select')
-    progress.innerText = progress.textContent = newBook.progress
+    progress.value = newBook.progress
     newBookCard.appendChild(progress)
     const started = document.createElement('option')
     started.textContent = 'Started'
@@ -113,7 +117,6 @@ function displayBook () {
     const completed = document.createElement('option')
     completed.textContent = 'Completed'
     progress.appendChild(completed)
-
     progress.addEventListener('change', function () {
         console.log(progress.value)
         newBookCard.className = (progress.value).replace(' ','')
